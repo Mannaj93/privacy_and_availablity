@@ -1,0 +1,27 @@
+test:
+  name: "Fabric Benchmark Test"
+  description: "Testing Fabric performance with Caliper"
+  workers:
+    type: local
+    number: 5
+
+rounds:
+  - label: readAsset
+    description: "Test read transactions"
+    txNumber: 100
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 10
+    workload:
+      module: workload/readAsset.js
+
+  - label: writeAsset
+    description: "Test write transactions"
+    txNumber: 100
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 10
+    workload:
+      module: workload/writeAsset.js
