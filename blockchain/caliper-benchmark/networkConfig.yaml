@@ -1,5 +1,6 @@
-name: "Caliper Test Network"
-version: "1.0"
+name: "Caliper Fabric Network"
+version: "2.0.0"
+
 caliper:
   blockchain: "fabric"
 
@@ -17,8 +18,11 @@ organizations:
     identities:
       certificates:
         - name: "Admin"
-          clientPrivateKey: "thesis/blockchain/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/f3594fa636..._sk"
-          clientSignedCert: "thesis/blockchain/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem"
+          clientPrivateKey: 
+            path: "thesis/blockchain/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/priv_sk"
+          clientSignedCert: 
+            path: "thesis/blockchain/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem"
+
     peers:
       - peer0.org1.example.com
 
@@ -27,8 +31,10 @@ organizations:
     identities:
       certificates:
         - name: "Admin"
-          clientPrivateKey: "thesis/blockchain/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/f3594fa636..._sk"
-          clientSignedCert: "thesis/blockchain/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem"
+          clientPrivateKey: 
+            path: "thesis/blockchain/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/priv_sk"
+          clientSignedCert: 
+            path: "thesis/blockchain/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/cert.pem"
     peers:
       - peer0.org2.example.com
 
@@ -36,8 +42,7 @@ orderers:
   orderer.example.com:
     url: "grpcs://localhost:7050"
     tlsCACerts:
-      path: "thesis/blockchain/artifacts/channel/crypto-config/ordererOrganizations/orderer.example.com/tlsca/tlsca.orderer.example.com-cert.pem"
-
+      path: "thesis/blockchain/artifacts/channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/tlscacerts/tls-localhost-9054-ca-orderer.pem"
 peers:
   peer0.org1.example.com:
     url: "grpcs://localhost:7051"

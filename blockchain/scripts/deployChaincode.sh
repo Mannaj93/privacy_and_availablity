@@ -76,8 +76,8 @@ approveForMyOrg1() {
     echo "===================== chaincode approved from org 1 ===================== "
 
 }
-# queryInstalled
-# approveForMyOrg1
+#queryInstalled
+#approveForMyOrg1
 
 # --signature-policy "OR ('Org1MSP.member')"
 # --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA --peerAddresses localhost:9051 --tlsRootCertFiles $PEER0_ORG2_CA
@@ -109,8 +109,8 @@ approveForMyOrg2() {
     echo "===================== chaincode approved from org 2 ===================== "
 }
 
-# queryInstalled
-# approveForMyOrg2
+#queryInstalled
+#approveForMyOrg2
 
 checkCommitReadyness() {
 
@@ -181,24 +181,24 @@ chaincodeQuery() {
     peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "getAssetByID","Args":["2"]}'
 }
 
-chaincodeQuery
+#chaincodeQuery
 
 
 
 
 # Run this function if you add any new dependency in chaincode
-# presetup
+presetup
 
-# packageChaincode
-# installChaincode
-# queryInstalled
-# approveForMyOrg1
-# checkCommitReadyness
-# approveForMyOrg2
-# checkCommitReadyness
-# commitChaincodeDefination
-# queryCommitted
-# sleep 3
-# chaincodeInvoke
-# sleep 3
-# chaincodeQuery
+packageChaincode
+installChaincode
+queryInstalled
+approveForMyOrg1
+checkCommitReadyness
+approveForMyOrg2
+checkCommitReadyness
+commitChaincodeDefination
+queryCommitted
+sleep 3
+chaincodeInvoke
+sleep 3
+chaincodeQuery
