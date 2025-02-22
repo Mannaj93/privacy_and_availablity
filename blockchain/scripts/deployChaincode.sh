@@ -155,7 +155,7 @@ peer chaincode invoke -o localhost:7050 \
     -C $CHANNEL_NAME -n ${CC_NAME}  \
     --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
     --peerAddresses localhost:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
-    -c '{"function":"CreatePatientData","Args":["{\"id\":\"2\",\"name\":\"Jane Smith\",\"dob\":\"1985-05-15\",\"diagnosis\":\"Diabetes\",\"gender\":\"female\"}"]}'
+    -c '{"function":"CreatePatientData","Args":["{\"id\":\"1\",\"name\":\"Jane\",\"dob\":\"1985-05-15\",\"diagnosis\":\"Cancer\",\"gender\":\"female\"}"]}'
 }
 
 #chaincodeInvoke
@@ -178,27 +178,27 @@ chaincodeInvokeABAC() {
 
 chaincodeQuery() {
     setGlobals 2
-    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "getAssetByID","Args":["2"]}'
+    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "getAssetByID","Args":["1"]}'
 }
 
-#chaincodeQuery
+chaincodeQuery
 
 
 
 
 # Run this function if you add any new dependency in chaincode
-presetup
+# presetup
 
-packageChaincode
-installChaincode
-queryInstalled
-approveForMyOrg1
-checkCommitReadyness
-approveForMyOrg2
-checkCommitReadyness
-commitChaincodeDefination
-queryCommitted
-sleep 3
-chaincodeInvoke
-sleep 3
-chaincodeQuery
+# packageChaincode
+# installChaincode
+# queryInstalled
+# approveForMyOrg1
+# checkCommitReadyness
+# approveForMyOrg2
+# checkCommitReadyness
+# commitChaincodeDefination
+# queryCommitted
+# sleep 3
+# chaincodeInvoke
+# sleep 3
+# chaincodeQuery

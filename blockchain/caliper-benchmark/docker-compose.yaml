@@ -7,10 +7,9 @@ services:
     command: launch manager --caliper-fabric-gateway-enabled
     environment:
       - CALIPER_BIND_SUT=fabric:2.1.0
-      - CALIPER_BENCHCONFIG=benchmarkConfig.yaml
-      - CALIPER_NETWORKCONFIG=networkConfig.yaml
+      - CALIPER_BENCHCONFIG=./benchmarkConfig.yaml
+      - CALIPER_NETWORKCONFIG=./networkConfig.yaml
     volumes:
       - /home/ubuntu/thesis/blockchain/caliper-benchmark:/hyperledger/caliper/workspace
-      - ./caliper-benchmarks-local:/hyperledger/caliper/workspace
 
     network_mode: host
