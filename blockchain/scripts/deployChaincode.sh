@@ -181,24 +181,24 @@ chaincodeQuery() {
     peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "getAssetByID","Args":["1"]}'
 }
 
-chaincodeQuery
+#chaincodeQuery
 
 
 
 
 # Run this function if you add any new dependency in chaincode
-# presetup
+presetup
 
-# packageChaincode
-# installChaincode
-# queryInstalled
-# approveForMyOrg1
-# checkCommitReadyness
-# approveForMyOrg2
-# checkCommitReadyness
-# commitChaincodeDefination
-# queryCommitted
-# sleep 3
-# chaincodeInvoke
-# sleep 3
-# chaincodeQuery
+packageChaincode
+installChaincode
+queryInstalled
+approveForMyOrg1
+checkCommitReadyness
+approveForMyOrg2
+checkCommitReadyness
+commitChaincodeDefination
+queryCommitted
+sleep 3
+chaincodeInvoke
+sleep 3
+chaincodeQuery

@@ -1,31 +1,44 @@
 ---
-name: "Caliper Fabric Network"
-version: "2.0.0"
-mutual-tls: false
+name: fabric
+description: "Sample connection profile for Caliper"
+version: 2.0.0
 
 caliper:
   blockchain: "fabric"
-
+  
 channels:
-  mychannel:
-    created: true
+  channelall:
     orderers:
       - orderer.example.com
     peers:
-      peer0.org1.example.com: {}
-      peer0.org2.example.com: {}
+      peer0.org1.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.org2.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.org3.example.com:
+        endorsingPeer: false
+        chaincodeQuery: false
+        ledgerQuery: true
+        eventSource: true
 
 organizations:
   Org1:
     mspid: Org1MSP
+    identities:
+      certificates:
+        - name: "Admin"
+          clientPrivateKey:
+            path: "/hyperledger/caliper/workspace/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/priv_sk"
+          clientSignedCert:
+            path: "/hyperledger/caliper/workspace/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem"
     peers:
       - peer0.org1.example.com
-    certificateAuthorities:
-      - ca.org1.example.com
-    adminPrivateKey:
-      path: "/hyperledger/caliper/workspace/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/priv_sk"
-    signedCert:
-      path: "/hyperledger/caliper/workspace/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem"
 
   Org2:
     mspid: Org2MSP
@@ -38,23 +51,22 @@ organizations:
             path: "/hyperledger/caliper/workspace/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/cert.pem"
     peers:
       - peer0.org2.example.com
-    certificateAuthorities:
-      - ca.org2.example.com
 
 orderers:
   orderer.example.com:
-    url: "grpcs://localhost:7050"
-    tlsCACerts:
-      path: "/hyperledger/caliper/workspace/artifacts/channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/tlscacerts/tls-localhost-9054-ca-orderer.pem"
+    url: grpc://192.169.0.9:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.example.com
 
 peers:
   peer0.org1.example.com:
-    url: "grpcs://localhost:7051"
-    tlsCACerts:
-      path: "/hyperledger/caliper/workspace/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem"
-
+    url: grpc://192.169.0.7:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.example.com
+      request-timeout: 120001
   peer0.org2.example.com:
-    url: "grpcs://localhost:9051"
-    tlsCACerts:
-      path: "/hyperledger/caliper/workspace/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem"
-
+    url: grpc://192.169.0.10:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.org2.example.com
+      request-timeout: 120001
+ 
