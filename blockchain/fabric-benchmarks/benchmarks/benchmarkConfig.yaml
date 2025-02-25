@@ -1,0 +1,39 @@
+---
+test:
+  name: "Hospital Chaincode Benchmark"
+  description: "Benchmark read and write transactions on the Hospital chaincode"
+  workers:
+    number: 1  # Adjust based on system resources
+
+rounds:
+  # 1) Read Transactions - Fetch patient data
+  - label: readPatientData
+    description: "Invoke the getAssetByID function to read patient data"
+    txNumber: 50
+    rateControl:
+      type: fixed-load
+      opts:
+        tps: 10
+    workload:
+      module: "./workload/readPatientData.js"
+    arguments:
+      chaincodeId: "myChainCode"  # Matches your chaincode name
+      contractId: "Hospital"      # Matches your contract class name
+      args:
+        - "1"  # Replace with an existing patient ID
+
+  # 2) Write Transactions - Create patient data
+  - label: writePatientData
+    description: "Invoke the CreatePatientData function to write patient records"
+    txNumber: 50
+    rateControl:
+      type: fixed-load
+      opts:
+        tps: 10
+    workload:
+      module: "./workload/writePatientData.js"
+    arguments:
+      chaincodeId: "myChainCode"
+      contractId: "Hospital"
+      args:
+        - '{"id":"1","name":"Alice","condition":"Healthy"}'
